@@ -3,4 +3,18 @@ class Author < ApplicationRecord
   has_many :publishers, through: :books
 
   caching :books
+  caching :expensive_method
+
+  attr_accessor :counter
+
+  def counter
+    @counter ||= 0
+  end
+
+  def expensive_method
+    @counter ||= 0
+    @counter += 1
+
+    1 + 2 + 3
+  end
 end
