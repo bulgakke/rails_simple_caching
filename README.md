@@ -40,7 +40,7 @@ class Author < ApplicationRecord
     end
   end
 
-  def cached_expensive_method(something)
+  def cached_expensive_method
     Rails.cache.fetch("#{cache_key_with_version}/expensive_method", expires_in: 2.hours) do
       expensive_method
     end
