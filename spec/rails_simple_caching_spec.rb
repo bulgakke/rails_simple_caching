@@ -70,7 +70,7 @@ RSpec.describe RailsSimpleCaching do
   it "does not generate 'cached_' methods unless explicitly told to" do
     a = Author.first
     expect { a.cached_name }.to raise_error(NoMethodError)
-    Author.caching :name
+    Author.caches :name
     expect(a.cached_name).to eq(a.name)
   end
 end

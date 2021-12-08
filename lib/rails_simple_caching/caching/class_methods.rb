@@ -7,7 +7,7 @@ module RailsSimpleCaching
         @expire_time = time
       end
 
-      def caching(attribute, expires_in: expire_time)
+      def caches(attribute, expires_in: expire_time)
         @cached_attributes ||= []
         @cached_attributes << attribute
 

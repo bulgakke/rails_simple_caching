@@ -1,11 +1,15 @@
 class Author < ApplicationRecord
   has_many :books
 
-  caching :books
-  caching :expensive_method
+  caches :books
+  caches :expensive_method
 
   def counter
     @counter ||= 0
+  end
+
+  def method_with_an(argument)
+    argument.to_s.reverse
   end
 
   def expensive_method

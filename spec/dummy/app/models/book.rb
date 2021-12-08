@@ -1,5 +1,5 @@
 class Book < ApplicationRecord
   belongs_to :author
 
-  caching :author
+  caches :author
 end
