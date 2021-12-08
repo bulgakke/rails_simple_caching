@@ -5,8 +5,6 @@ class Author < ApplicationRecord
   caching :books
   caching :expensive_method
 
-  attr_accessor :counter
-
   def counter
     @counter ||= 0
   end
