@@ -5,7 +5,7 @@ RSpec.describe RailsSimpleCaching do
     expect(RailsSimpleCaching::VERSION).not_to be nil
   end
 
-  it "does something useful" do
-    expect(false).to eq(true)
+  it "works in a dummy Rails environment" do
+    expect(Rails.application).to be_truthy
   end
 end
