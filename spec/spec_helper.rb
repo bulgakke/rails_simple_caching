@@ -16,4 +16,8 @@ RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
+
+  def key(resource, method_name)
+    resource.cache_key_with_version + '/' + method_name
+  end
 end

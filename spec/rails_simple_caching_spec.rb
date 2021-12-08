@@ -3,6 +3,8 @@
 RSpec.describe RailsSimpleCaching do
   before :all do
     Rails.cache.clear
+    Book.destroy_all
+    Author.destroy_all
     a = Author.create(name: "Some Author")
     Book.create(title: "Some Book", author: a)
     Book.create(title: "Another Book", author: a)
@@ -27,31 +29,34 @@ RSpec.describe RailsSimpleCaching do
   end
 
   it "stores values in cache" do
-    b = Book.first
-    key = b.cache_key_with_version + '/author'
-    b.author
-    expect(Rails.cache.read(key)).to be_nil
-    b.cached_author
-    expect(Rails.cache.read(key)).to_not be_nil
+    book = Book.first
+    cache_key = key(book, 'author')
+    book.author
+    expect(Rails.cache.read(cache_key)).to be_nil
+    book.cached_author
+    expect(Rails.cache.read(cache_key)).to_not be_nil
   end
 
-  it "invalidates cache when the resource is updated" do
-    b = Book.first
-    a = b.cached_author
-    old_name = a.name
-    a.update(name: old_name.reverse)
-    queried = b.author
-    cached = b.cached_author
+  it "invalidates cache when the resource is updated in any way" do
+    book = Book.first
+    book.update_cached(:author)
+    invalidated_cache_key = key(book, 'author')
 
-    expect(queried.name).to eq(old_name.reverse)
-    expect(queried).to eq(cached)
+    book.update(updated_at: Time.now)
+    new_cache_key = key(book, 'author')
+
+    expect(invalidated_cache_key).to_not eq(new_cache_key)
   end
 
   it "DOES NOT invalidate cache when the referenced attribute is updated" do
-    cached1 = Author.first.cached_books
-    Book.first.destroy
-    cached2 = Author.first.cached_books
-    expect(cached1).to eq(cached2)
+    author = Author.first
+    author.update_cached(:books)
+    author.books.first.destroy
+
+    cached = author.cached_books
+    queried = author.books.reload
+
+    expect(cached).to_not eq(queried)
   end
 
   it "works with other methods" do
