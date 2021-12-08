@@ -11,6 +11,7 @@
 /spec/dummy/log/*
 /spec/dummy/tmp/*
 /spec/dummy/test/*
+/spec/dummy/db/*.sqlite3
 !/spec/dummy/tmp/caching-dev.txt
 
 # rspec failure tracking
