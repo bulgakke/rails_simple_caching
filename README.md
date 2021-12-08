@@ -60,6 +60,7 @@ The precedence goes:
 ```ruby
 caches :something # Cache will still expire after default time
 cache_expires_in 2.minutes
+caches :something_else # Will expire in 2 minutes
 ```
 3. `Rails.configuration.default_expire_time`: global default for all models. Set to `24.hours` by default. Set it to your liking in `config/application.rb` or in `config/environments/`
 
