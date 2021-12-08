@@ -18,7 +18,7 @@ module RailsSimpleCaching
         define_method("cached_#{attribute}") do
           key = "#{cache_key_with_version}/#{attribute}"
           Rails.cache.fetch(key, expires_in: expires_in) do
-            update_cached(attribute)
+            public_send(attribute)
           end
         end
       end
