@@ -3,9 +3,6 @@
 module RailsSimpleCaching
   module Caching
     module ClassMethods
-      # If not provided by `cache_expires_in` macro or `expires_in:` argument
-      DEFAULT_EXPIRE_TIME = Rails.configuration.simple_cache.default_expire_time
-
       def cache_expires_in(time)
         @expire_time = time
       end
@@ -33,7 +30,7 @@ module RailsSimpleCaching
       private
 
       def expire_time
-        @expire_time || DEFAULT_EXPIRE_TIME
+        @expire_time || Rails.configuration.default_expire_time
       end
     end
   end
