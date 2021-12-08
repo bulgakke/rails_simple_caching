@@ -30,7 +30,8 @@ module RailsSimpleCaching
       private
 
       def expire_time
-        @expire_time || Rails.configuration.default_expire_time
+        # The application requires the gem before initializing
+        @expire_time || Rails&.configuration&.default_expire_time || 24.hours
       end
     end
   end
