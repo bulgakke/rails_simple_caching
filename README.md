@@ -4,6 +4,7 @@ A simple wrapper around Rails built-in caching. Provides Rails-like macros to ge
 How Rails caching works: https://guides.rubyonrails.org/caching_with_rails.html#low-level-caching
 https://api.rubyonrails.org/classes/ActiveSupport/Cache/Store.html
 
+To read more on what this does and doesn't do, refer to the [spec file](spec/rails_simple_caching_spec.rb).
 
 https://github.com/igorkasyanchuk/rails_cached_method is the only gem of a similar caliber that does kind of the same thing. That one's functionality is wider, but it does a little bit too much for my taste.
 
@@ -89,15 +90,9 @@ Or install it yourself as:
     $ gem install rails_simple_caching
 
 
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/rails_simple_caching.
+Bug reports and pull requests are welcome on GitHub at https://github.com/bulgakke/rails_simple_caching.
 
 ## License
 
